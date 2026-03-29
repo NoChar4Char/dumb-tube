@@ -1,0 +1,175 @@
+/* Dumb Tube Content Styles */
+
+/* ── In-Screen Stopwatch ──────────────────────────────────────────────── */
+#dumbtube-stopwatch {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.72);
+    color: #fff;
+    font-family: 'SF Mono', 'Roboto Mono', ui-monospace, monospace;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 8px;
+    z-index: 2147483646;
+    pointer-events: none;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    display: none; /* controlled by content.js */
+    align-items: center;
+}
+
+/* ── Ban Overlay ──────────────────────────────────────────────────────── */
+#dumbtube-ban-overlay {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 2147483647;
+    display: none; /* controlled by content.js */
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.ban-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+}
+
+.ban-icon {
+    font-size: 56px;
+    animation: ban-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes ban-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50%       { transform: scale(1.06); opacity: 1; }
+}
+
+.ban-msg {
+    font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.3px;
+}
+
+.ban-countdown {
+    font-family: 'SF Mono', 'Roboto Mono', ui-monospace, monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+}
+
+
+
+/* Feature Toggles */
+
+/* Hide Home Feed */
+html.dumbtube-hideHomeFeed ytd-browse[page-subtype="home"] ytd-rich-grid-renderer,
+html.dumbtube-hideHomeFeed ytd-browse[page-subtype="home"] #primary {
+    display: none !important;
+}
+
+/* Hide Video Sidebar */
+html.dumbtube-hideVideoSidebar #secondary.ytd-watch-flexy,
+html.dumbtube-hideVideoSidebar #related {
+    display: none !important;
+}
+
+/* Hide End Screen Feed */
+html.dumbtube-hideEndScreenFeed .html5-endscreen.ytp-show-tiles {
+    display: none !important;
+}
+
+/* Hide End Screen Cards */
+html.dumbtube-hideEndScreenCards .ytp-ce-element {
+    display: none !important;
+}
+
+/* Hide Shorts */
+html.dumbtube-hideShorts ytd-reel-shelf-renderer,
+html.dumbtube-hideShorts ytd-rich-shelf-renderer[is-shorts],
+html.dumbtube-hideShorts ytd-guide-entry-renderer:has(a[title="Shorts"]),
+html.dumbtube-hideShorts ytd-mini-guide-entry-renderer:has(a[title="Shorts"]) {
+    display: none !important;
+}
+
+/* Hide Comments */
+html.dumbtube-hideComments ytd-comments#comments {
+    display: none !important;
+}
+
+/* Hide Mixes */
+html.dumbtube-hideMixes ytd-radio-renderer,
+html.dumbtube-hideMixes ytd-compact-radio-renderer {
+    display: none !important;
+}
+
+/* Hide Merch, Tickets, Offers */
+html.dumbtube-hideMerchTicketsOffers ytd-merch-shelf-renderer,
+html.dumbtube-hideMerchTicketsOffers ytd-ticket-shelf-renderer,
+html.dumbtube-hideMerchTicketsOffers #donation-shelf {
+    display: none !important;
+}
+
+/* Hide Video Info */
+html.dumbtube-hideVideoInfo #above-the-fold,
+html.dumbtube-hideVideoInfo ytd-watch-metadata {
+    display: none !important;
+}
+
+/* Hide Top Header */
+html.dumbtube-hideTopHeader #masthead-container {
+    display: none !important;
+}
+html.dumbtube-hideTopHeader ytd-app {
+    --ytd-masthead-height: 0px !important;
+    padding-top: 0 !important;
+}
+html.dumbtube-hideTopHeader #dumbtube-stopwatch {
+    top: 20px !important; /* Adjust stopwatch position if header is hidden */
+}
+
+/* Hide Notifications */
+html.dumbtube-hideNotifications ytd-notification-topbar-button-renderer {
+    display: none !important;
+}
+
+/* Hide Inapt Search Results */
+html.dumbtube-hideInaptSearchResults ytd-search ytd-shelf-renderer,
+html.dumbtube-hideInaptSearchResults ytd-search ytd-horizontal-card-list-renderer {
+    display: none !important;
+}
+
+/* Hide Explore, Trending */
+html.dumbtube-hideExploreTrending ytd-guide-entry-renderer:has(a[href*="/feed/explore"]),
+html.dumbtube-hideExploreTrending ytd-guide-entry-renderer:has(a[href*="/feed/trending"]) {
+    display: none !important;
+}
+
+/* Hide More from YouTube */
+html.dumbtube-hideMoreFromYouTube ytd-guide-section-renderer:has(#guide-section-title[title="More from YouTube"]) {
+    display: none !important;
+}
+
+/* Hide Subscriptions */
+html.dumbtube-hideSubscriptions ytd-guide-entry-renderer:has(a[href*="/feed/subscriptions"]),
+html.dumbtube-hideSubscriptions ytd-mini-guide-entry-renderer:has(a[href*="/feed/subscriptions"]),
+html.dumbtube-hideSubscriptions ytd-browse[page-subtype="subscriptions"] {
+    display: none !important;
+}
+
+/* Disable Animations / Annotations */
+html.dumbtube-disableAnnotations .ytp-iv-video-content,
+html.dumbtube-disableAnnotations .annotation {
+    display: none !important;
+}
+
+/* Autoplay is handled via JS click in content.js */

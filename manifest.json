@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Dumb Tube",
+  "version": "1.0",
+  "description": "Customize YouTube features and track your watch time with an in-screen stopwatch.",
+  "permissions": ["storage", "tabs", "scripting"],
+  "host_permissions": ["*://*.youtube.com/*"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start"
+    }
+  ]
+}

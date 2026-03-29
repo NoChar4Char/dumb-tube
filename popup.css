@@ -1,0 +1,241 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --border-color: #e0e0e0;
+  --toggle-bg: #ccc;
+  --toggle-thumb: #fff;
+  --toggle-active: #007aff;
+  --highlight-bg: #f5f5f5;
+  --icon-hover: #000;
+  --ban-btn: #e53e3e;
+  --ban-btn-hover: #c53030;
+  --unban-btn: #38a169;
+  --unban-btn-hover: #276749;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a1c;
+  --text-color: #ffffff;
+  --border-color: #333333;
+  --toggle-bg: #4a4a4c;
+  --toggle-thumb: #fff;
+  --toggle-active: #0a84ff;
+  --highlight-bg: #2a2a2c;
+  --icon-hover: #fff;
+  --ban-btn: #e53e3e;
+  --ban-btn-hover: #c53030;
+}
+
+body {
+  width: 320px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-icon { font-size: 20px; }
+
+h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.controls { display: flex; gap: 8px; }
+
+.icon-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  opacity: 0.6;
+  transition: opacity 0.2s, background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-button:hover {
+  opacity: 1;
+  background-color: var(--highlight-bg);
+  color: var(--icon-hover);
+}
+
+.settings-list {
+  padding: 8px 0;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.settings-list::-webkit-scrollbar { width: 6px; }
+.settings-list::-webkit-scrollbar-track { background: transparent; }
+.settings-list::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 10px;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  transition: background-color 0.15s ease;
+}
+
+.setting-item:hover { background-color: var(--highlight-bg); }
+
+.highlight-item {
+  background-color: var(--highlight-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 4px 16px;
+}
+
+.setting-label {
+  margin-left: 14px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ── Ban Section ─────────────────────────────────────────────── */
+
+.ban-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ban-title {
+  margin-left: 0 !important;
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.ban-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.ban-input {
+  width: 52px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 13px;
+  font-family: inherit;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.ban-input:focus { border-color: var(--toggle-active); }
+.ban-input:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.ban-button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 8px;
+  background: var(--ban-btn);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.ban-button:hover { background: var(--ban-btn-hover); }
+.ban-button:active { transform: scale(0.96); }
+.ban-button.unban { background: var(--unban-btn); }
+.ban-button.unban:hover { background: var(--unban-btn-hover); }
+.ban-button.locked,
+.ban-button:disabled {
+    background: #555 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+    opacity: 0.7;
+}
+.ban-button.extend-btn {
+    background: #2f855a;
+}
+.ban-button.extend-btn:hover {
+    background: #276749;
+}
+
+.ban-status {
+  display: none;
+  padding: 6px 16px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ban-btn);
+  letter-spacing: 0.2px;
+}
+
+/* ── Toggle Switch ─────────────────────────────────────────────── */
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.toggle input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--toggle-bg);
+  transition: .3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--toggle-thumb);
+  transition: .3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+input:checked + .slider { background-color: var(--toggle-active); }
+input:checked + .slider:before { transform: translateX(16px); }
